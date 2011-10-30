@@ -1,3 +1,5 @@
+require 'rails'
+
 module Less  
   module Rails
     class Railtie < ::Rails::Railtie
@@ -8,7 +10,7 @@ module Less
       
       config.less = ActiveSupport::OrderedOptions.new
       config.less.paths = []
-      config.less.compress = false
+      config.less.compress = ::Rails.env != 'development'
       
       config.before_initialize do |app|
         require 'less'
